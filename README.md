@@ -17,7 +17,7 @@ A pipeline to extract, clean and store data in a database, and train and deploy 
 
 3. Go to http://0.0.0.0:3001/
 
-### Files:
+### Files
 
 app
 - templates
@@ -36,3 +36,12 @@ models
 - classifier.pkl # saved model
 
 README.md
+
+### Installation
+
+1. Download this repo and unzip to your favorite location
+2. Install dependecies using pip
+
+### Acknowledgements
+
+Thank you udacity for providing input, knowledge and templates. 
