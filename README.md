@@ -20,12 +20,15 @@ app
     - master.html # main page of web app
     - go.html # classification result page of web app
 - run.py # Flask file that runs app
+
 data
 - disaster_categories.csv # data to process
 - disaster_messages.csv # data to process
 - process_data.py # file to run and lo
 - DisasterResponse.db # database to save clean data to
+
 models
 - train_classifier.py # file that trains model
 - classifier.pkl # saved model
+
 README.md
