@@ -1,6 +1,10 @@
 # Disaster Response Pipeline Project
 
-### Instructions:
+### Summary
+
+A pipeline to extract, clean and store data in a database, and train and deploy a classifier to classify disaster messages.
+
+### Instructions
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
