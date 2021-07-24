@@ -1,6 +1,10 @@
 # Disaster Response Pipeline Project
 
-### Instructions:
+### Summary
+
+A pipeline to extract, clean and store data in a database, and train and deploy a classifier to classify disaster messages.
+
+### Instructions
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
@@ -12,3 +16,23 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
+
+### Files:
+
+app
+- templates
+    - master.html # main page of web app
+    - go.html # classification result page of web app
+- run.py # Flask file that runs app
+
+data
+- disaster_categories.csv # data to process
+- disaster_messages.csv # data to process
+- process_data.py # file to run and lo
+- DisasterResponse.db # database to save clean data to
+
+models
+- train_classifier.py # file that trains model
+- classifier.pkl # saved model
+
+README.md
