@@ -39,6 +39,9 @@ def clean_data(df):
     df = pd.concat([df, categories], axis=1)
     
     df = df.drop_duplicates()
+
+    df['related'] = df['related'].astype('str').str.replace('2', '1')
+    df['related'] = df['related'].astype('int')
     
     return df
 
