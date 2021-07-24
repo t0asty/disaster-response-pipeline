@@ -17,6 +17,13 @@ from sklearn.metrics import classification_report
 
 
 def load_data(database_filepath):
+    """
+        load data from database in database_filepath
+        return 
+            X - pd.DataFrame with messages
+            Y - pd.DataFrame with categories
+            category_names - names of categories in Y
+    """
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql('Messages', engine)
     X = df['message']
@@ -26,12 +33,14 @@ def load_data(database_filepath):
 
 
 def tokenize(text):
+    """ remove punctuation from text, make lowercase and return list of words"""
     table = str.maketrans(dict.fromkeys(string.punctuation))
     text.translate(table)
     return word_tokenize(text.lower())
 
 
 def build_model():
+    """ return model to train """
     pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
@@ -42,6 +51,7 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """evaluate model on X_test against Y_test"""
     Y_pred = pd.DataFrame(model.predict(X_test), columns=category_names)
     
     for col in category_names:
@@ -50,11 +60,13 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """ save model to pickle file in model_filepath"""
     with open(model_filepath, 'wb') as f:
         pickle.dump(model, f)
 
 
 def main():
+    """ load data, train model and save model """
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
         print('Loading data...\n    DATABASE: {}'.format(database_filepath))

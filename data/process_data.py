@@ -3,6 +3,10 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 def load_data(messages_filepath, categories_filepath):
+    """ 
+        load messages from messages_filepath, categories from categories_filepath 
+        and return merged df from both
+    """
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     
@@ -11,6 +15,9 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """
+        convert categories into single categorical variables
+    """
     categories = pd.DataFrame(df['categories'].str.split(';', expand=True))
     row = categories.iloc[0]
     
@@ -37,11 +44,15 @@ def clean_data(df):
 
 
 def save_data(df, database_filename):
+    """
+        save df to database in database_filename
+    """
     engine = create_engine('sqlite:///' + database_filename)
     df.to_sql('Messages', engine, index=False)
 
 
 def main():
+    """ run ETL pipeline """
     if len(sys.argv) == 4:
 
         messages_filepath, categories_filepath, database_filepath = sys.argv[1:]
