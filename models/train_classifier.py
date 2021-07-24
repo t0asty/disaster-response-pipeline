@@ -46,8 +46,17 @@ def build_model():
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])
+
+    parameters = {
+    'clf__estimator__criterion': ['gini', 'entropy'],
+    'clf__estimator__min_samples_split': [2, 5],
+    'clf__estimator__min_samples_leaf': [1, 3],
+    'vect__ngram_range': [(1,1), (1,2)]
+}
+
+    cv = GridSearchCV(pipeline, parameters)
     
-    return pipeline
+    return cv
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
